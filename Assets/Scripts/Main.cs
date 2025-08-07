@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 public class Main : MonoBehaviour
@@ -33,26 +34,35 @@ public class Main : MonoBehaviour
 
         // 3. 计算左右两侧的位置（以地板中心为基准）
         // 这里偏移量可以根据需要调整，比如偏离地板边缘一点
-        float offset = groundWidth / 2 -2f; // 2f是额外距离
+        float offset = groundWidth / 2 - 2f; // 2f是额外距离
 
         Vector3 leftPos = new Vector3(groundPos.x - offset, groundPos.y, groundPos.z);
         Vector3 rightPos = new Vector3(groundPos.x + offset, groundPos.y, groundPos.z);
 
         // 4. 生成红色Boss在左边，蓝色Boss在右边
-        Instantiate(redBossPrefab, leftPos, Quaternion.identity);
-        Instantiate(blueBossPrefab, rightPos, Quaternion.identity);
+        var redBoss = Instantiate(redBossPrefab, leftPos, Quaternion.identity);
+        var blueBoss = Instantiate(blueBossPrefab, rightPos, Quaternion.identity);
+        // 5. 设置名字和阵营
+        redBoss.name = "RedBoss";
+        redBoss.GetComponent<Boss>().camp = Camp.RED;
+        blueBoss.name = "BlueBoss";
+        blueBoss.GetComponent<Boss>().camp = Camp.BLUE;
+    }
+
+    private void InitSoldiers()
+    {
+        Instantiate(blueSoldierPrefab, Vector3.zero, Quaternion.identity);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         InitBoss();
+        InitSoldiers();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
-    
 }
