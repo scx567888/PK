@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Enums;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Main : MonoBehaviour
 {
@@ -51,7 +52,17 @@ public class Main : MonoBehaviour
 
     private void InitSoldiers()
     {
-        Instantiate(blueSoldierPrefab, Vector3.zero, Quaternion.identity);
+        for (int i = 0; i < 100; i++)
+        {
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-3f, 3f),  // x 方向随机偏移
+                0f,                     // y 不偏移（保持在地面上）
+                Random.Range(-3f, 3f)   // z 方向随机偏移
+            );
+
+            Vector3 spawnPos = Vector3.zero + randomOffset;
+            Instantiate(blueSoldierPrefab, spawnPos, Quaternion.identity);    
+        }
     }
 
     // Start is called before the first frame update
@@ -64,5 +75,7 @@ public class Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
+    
 }
