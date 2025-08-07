@@ -22,17 +22,37 @@ public class Main : MonoBehaviour
         ground = GameObject.Find("Ground");
     }
 
+    private void InitBoss()
+    {
+        // 1. 获取地板的位置
+        Vector3 groundPos = ground.transform.position;
+
+        // 2. 获取地板的宽度（假设宽度是 x 轴方向）
+        Renderer groundRenderer = ground.GetComponent<Renderer>();
+        float groundWidth = groundRenderer.bounds.size.x;
+
+        // 3. 计算左右两侧的位置（以地板中心为基准）
+        // 这里偏移量可以根据需要调整，比如偏离地板边缘一点
+        float offset = groundWidth / 2 -2f; // 2f是额外距离
+
+        Vector3 leftPos = new Vector3(groundPos.x - offset, groundPos.y, groundPos.z);
+        Vector3 rightPos = new Vector3(groundPos.x + offset, groundPos.y, groundPos.z);
+
+        // 4. 生成红色Boss在左边，蓝色Boss在右边
+        Instantiate(redBossPrefab, leftPos, Quaternion.identity);
+        Instantiate(blueBossPrefab, rightPos, Quaternion.identity);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(ground.transform.position);
-        Instantiate(redBossPrefab);
+        InitBoss();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
-
+    
 }
