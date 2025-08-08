@@ -35,7 +35,7 @@ public class Soldier
         }
         else
         {
-            this.view = ViewFactory.getBlueSoldier();
+            this.view = ViewFactory.getRedSoldier();
         }
         this.view.transform.position = Utils.getSoilderInitPosition(game.ground, camp);
     }
