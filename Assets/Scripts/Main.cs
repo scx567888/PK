@@ -10,8 +10,9 @@ public class Main : MonoBehaviour
 
     void Awake()
     {
+        var ground=GameObject.Find("Ground");
         ViewFactory.init();
-        game = new Game();
+        game = new Game(ground);
     }
 
     void Start()

@@ -14,8 +14,9 @@ public class Boss
     public Camp camp;
 
     public GameObject view;
+    public bool isDead;
 
-    public Boss(Camp camp)
+    public Boss(Camp camp,Game game)
     {
         this.camp = camp;
         this.hp = MAX_HP;
@@ -27,6 +28,8 @@ public class Boss
         {
             this.view = ViewFactory.getRedBoss();
         }
+
+        this.view.transform.position = Utils.getBossInitPosition(game.ground,camp);
     }
 
     public void TakeDamage(int amount)
@@ -52,5 +55,13 @@ public class Boss
         {
             ViewFactory.destroyRedBoss(view);
         }
+        this.isDead = true;
     }
+
+    public void Update()
+    {
+        // Boss 目前没有可调用的方法
+    }
+    
+    
 }

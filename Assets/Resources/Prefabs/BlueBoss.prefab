@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5784909067078221828}
   - component: {fileID: 4537023481586468566}
   - component: {fileID: 7802776940899227556}
-  - component: {fileID: 7201915324981003061}
   m_Layer: 0
   m_Name: BlueBoss
   m_TagString: Untagged
@@ -106,15 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7201915324981003061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8977132036709980537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863ac6bda8593c440aff58ff2525a5be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
