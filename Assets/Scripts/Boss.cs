@@ -1,36 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using DefaultNamespace;
 using Enums;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss
 {
-
+    // 最大 HP
     private static int MAX_HP = 100;
-    private int hp;
+
+    // 当前 HP
+    public int hp;
+
+    // 所属阵营
     public Camp camp;
 
-    void Awake()
+    public GameObject view;
+
+    public Boss(Camp camp)
     {
-        hp = MAX_HP;
+        this.camp = camp;
+        this.hp = MAX_HP;
+        if (camp == Camp.BLUE)
+        {
+            this.view = ViewFactory.getBlueBoss();
+        }
+        else
+        {
+            this.view = ViewFactory.getRedBoss();
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Boss 生成了");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public void TakeDamage(int amount)
     {
         hp -= amount;
+
         Debug.Log($"Boss took {amount} damage, current HP: {hp}");
 
         if (hp <= 0)
@@ -38,17 +40,17 @@ public class Boss : MonoBehaviour
             Die();
         }
     }
-    
+
     void Die()
     {
         Debug.Log("Boss died!");
-        Destroy(gameObject);
+        if (camp == Camp.BLUE)
+        {
+            ViewFactory.destroyBlueBoss(view);
+        }
+        else
+        {
+            ViewFactory.destroyRedBoss(view);
+        }
     }
-    
-    void OnMouseDown()
-    {
-        // 点击时扣10点血
-        TakeDamage(10);
-    }
-    
 }
