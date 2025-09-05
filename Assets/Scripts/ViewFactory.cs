@@ -23,9 +23,9 @@ namespace DefaultNamespace
             }
 
             redBossPrefab = Resources.Load<GameObject>("Prefabs/RedBoss");
-            redSoldierPrefab = Resources.Load<GameObject>("Prefabs/RedSoldier");
+            redSoldierPrefab = Resources.Load<GameObject>("Prefabs/RedSoldier2");
             blueBossPrefab = Resources.Load<GameObject>("Prefabs/BlueBoss");
-            blueSoldierPrefab = Resources.Load<GameObject>("Prefabs/BlueSoldier");
+            blueSoldierPrefab = Resources.Load<GameObject>("Prefabs/BlueSoldier2");
             
             isInit = true;
         }

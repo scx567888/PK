@@ -6,38 +6,65 @@ using UnityEngine;
 
 public class Soldier
 {
-    private static int MAX_HP = 100;
+    // 空间信息
+    public Vector3 position;
+    public Quaternion rotation;
+    public Vector3 scale;
 
-
-    public SoldierState state;
-    private int hp;
-
-    public float speed = 3f;
-    public float attackRange = 1.5f;
-    public float attackInterval = 1.0f;
-    public int attackDamage = 10;
-
+    // 基本信息
+    public long id;
     public Camp camp;
+    public SoldierType soldierType;
 
-    private readonly GameObject view;
-    private readonly Game game;
-    private Boss targetBoss;
+    // 血量
+    public int hp;
 
-    public Soldier(Camp camp, Game game)
+    // 攻击力
+    public int attackPower;
+
+    //移动速度
+    public float speed;
+
+    // 攻击范围
+    public float attackRange;
+
+    // 世界对象
+    public readonly Game game;
+
+    // 状态机相关
+    public SoldierState state;
+
+    // 当前帧
+    public int currentFrame;
+
+    public Boss targetBoss;
+
+    public Soldier(long id, Camp camp, SoldierType soldierType, Game game)
     {
+        // 设置基本信息
+        this.id = id;
         this.camp = camp;
+        this.soldierType = soldierType;
         this.game = game;
-        this.hp = MAX_HP;
+
+        // 这里应该根据 soldierType 读取
+        this.hp = 1000;
+        this.attackPower = 1000;
+        this.speed = 3f;
+        this.attackRange = 1.5f;
+
+        // 设置空间信息
+        
+        this.position = Utils.getSoilderInitPosition(game.ground, camp);
+        
+        this.rotation = Quaternion.identity;
+        this.scale = Vector3.one;
+
+        // 默认状态
         this.state = SoldierState.MOVING_TO_BOSS;
-        if (camp == Camp.BLUE)
-        {
-            this.view = ViewFactory.getBlueSoldier();
-        }
-        else
-        {
-            this.view = ViewFactory.getRedSoldier();
-        }
-        this.view.transform.position = Utils.getSoilderInitPosition(game.ground, camp);
+
+        // 默认第一帧
+        this.currentFrame = 0;
     }
 
     public void Update()
@@ -61,14 +88,14 @@ public class Soldier
             this.state = SoldierState.WAITING;
             return;
         }
-        
+
         // 移动?
-        
+
         // 目标位置
         Vector3 targetPos = targetBoss.view.transform.position; // 假设Boss类有个Position属性
 
         // 当前位置
-        Vector3 currentPos = view.transform.position;
+        Vector3 currentPos = this.position;
 
         // 计算与目标距离
         float distance = Vector3.Distance(currentPos, targetPos);
@@ -84,21 +111,23 @@ public class Soldier
             Vector3 dir = (targetPos - currentPos).normalized;
             // 移动距离 = 速度 * 时间间隔
             float moveDist = speed * Time.deltaTime;
-            view.transform.position += dir * moveDist;
+            this.position += dir * moveDist;
         }
-        
     }
 
     void Attack()
     {
-        
     }
-
 
     public Boss findTargetBoss()
     {
         var bossList = camp == Camp.RED ? game.blueBossList : game.redBossList;
         return Utils.RandomGet(bossList);
+    }
+
+    public Matrix4x4 GetMatrix()
+    {
+        return Matrix4x4.TRS(this.position, this.rotation, this.scale);
     }
     
 }

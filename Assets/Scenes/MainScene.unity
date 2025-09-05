@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 899621062}
   - component: {fileID: 899621063}
+  - component: {fileID: 899621064}
   m_Layer: 0
   m_Name: "\u4E3B\u903B\u8F91"
   m_TagString: Untagged
@@ -260,6 +261,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2de480031ffc34d9e90db0d18df0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &899621064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899621061}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d115140f7074e2d9f1729152aacf8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  quadMaterial: {fileID: 2100000, guid: 163e399e7fc7b7b40861738c0fa1e0fa, type: 2}
+  totalCount: 20000
+  areaSize: 50
+  moveSpeed: 0.5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
