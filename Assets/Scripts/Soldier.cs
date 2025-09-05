@@ -58,7 +58,7 @@ public class Soldier
         this.position = Utils.getSoilderInitPosition(game.ground, camp);
         
         this.rotation = Quaternion.identity;
-        this.scale = Vector3.one;
+        this.scale = new Vector3(0.2f,0.2f,0.2f);
 
         // 默认状态
         this.state = SoldierState.MOVING_TO_BOSS;

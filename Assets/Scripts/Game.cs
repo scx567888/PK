@@ -33,7 +33,7 @@ namespace DefaultNamespace
         public void Start()
         {
             
-            this.soldierMesh = Resources.GetBuiltinResource<Mesh>("Quad.fbx");
+            this.soldierMesh = Resources.GetBuiltinResource<Mesh>("Sphere.fbx");
             
             this.redMat = new Material(Shader.Find("Standard"));
             redMat.enableInstancing = true;
@@ -47,13 +47,13 @@ namespace DefaultNamespace
             
             state = GameState.PLAYING;
             redBossList.Add(new Boss(Camp.RED, this));
-            for (int i = 0; i < 20000; i++)
+            for (int i = 0; i < 5000; i++)
             {
                 blueSoldierList.Add(new Soldier(soldierId++, Camp.BLUE, SoldierType.NORMAL, this));
             }
 
             blueBossList.Add(new Boss(Camp.BLUE, this));
-            for (int i = 0; i < 20000; i++)
+            for (int i = 0; i < 5000; i++)
             {
                 redSoldierList.Add(new Soldier(soldierId++, Camp.RED, SoldierType.NORMAL, this));
             }
