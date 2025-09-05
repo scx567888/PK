@@ -27,12 +27,12 @@ namespace DefaultNamespace
         {
             state = GameState.PLAYING;
             redBossList.Add(new Boss(Camp.RED,this));
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 5000; i++)
             {
                 blueSoldierList.Add(new Soldier(Camp.BLUE,this));    
             }
             blueBossList.Add(new Boss(Camp.BLUE,this));
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 5000; i++)
             {
                 redSoldierList.Add(new Soldier(Camp.RED,this));    
             }
